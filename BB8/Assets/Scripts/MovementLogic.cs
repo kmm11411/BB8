@@ -10,7 +10,7 @@ public class MovementLogic : MonoBehaviour
 
     Rigidbody m_rigidBody;
 
-    //public Transform m_ParentTransform;
+    public Transform m_ParentTransform;
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class MovementLogic : MonoBehaviour
     {
         Vector3 movement = new Vector3 (m_horizontalMovement, 0.0f, m_verticalMovement);
         m_rigidBody.AddForce(movement);
-        //m_ParentTransform.position = transform.position;
-        //m_ParentTransform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        m_ParentTransform.position = transform.position;
     }
 }

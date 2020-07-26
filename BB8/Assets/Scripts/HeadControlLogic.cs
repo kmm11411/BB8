@@ -14,7 +14,7 @@ public class HeadControlLogic : MonoBehaviour
 
     void LateUpdate()
     {
-        //transform.position = m_body.transform.position;
-        transform.position = new Vector3 (m_body.position.x, m_body.position.y + m_body.localScale.y / 2f, m_body.position.z);
+        transform.position = m_body.transform.position;
+        //transform.position = new Vector3 (m_body.position.x, m_body.position.y + m_body.localScale.y / 2f, m_body.position.z);
     }
 }
