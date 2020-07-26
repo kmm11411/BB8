@@ -4,30 +4,17 @@ using UnityEngine;
 
 public class HeadControlLogic : MonoBehaviour
 {
-    Rigidbody m_rigidbody;
-    public float m_torqueScale = 0.3f;
+    public Transform m_body;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_rigidbody = GetComponent<Rigidbody>();
+
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        var target = Vector3.up;
-        var current = m_rigidbody.transform.forward;
-
-        var x = Vector3.Cross(target, current);
-        var theta = Mathf.Asin(x.magnitude);
-
-        var w = x.normalized * (theta / Time.fixedDeltaTime * m_torqueScale);
-        var q = m_rigidbody.transform.rotation * m_rigidbody.inertiaTensorRotation;
-
-        w = Quaternion.Inverse(q) * w;
-
-        var t = q * Vector3.Scale(m_rigidbody.inertiaTensor, w);
-
-        m_rigidbody.AddTorque(t, ForceMode.Force);
+        transform.position = m_body.transform.position;
+        //transform.position = new Vector3 (m_body.position.x, m_body.position.y + m_body.localScale.y / 2f, m_body.position.z);
     }
 }
