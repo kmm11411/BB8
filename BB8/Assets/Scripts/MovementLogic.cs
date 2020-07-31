@@ -23,8 +23,15 @@ public class MovementLogic : MonoBehaviour
     private float m_maxSpeed = 0;
     private Vector3 m_maxForce;
 
+    private float m_horizontalInput = 0;
+    private float m_verticalInput = 0;
+    private Vector3 m_movementInput;
+
+    GameObject m_camera;
+
     void Start()
     {
+        m_camera = Camera.main.gameObject;
         m_rigidBody = GetComponent<Rigidbody>();
         m_blowTorchEffect.Stop();
     }
@@ -41,12 +48,27 @@ public class MovementLogic : MonoBehaviour
             SwitchBlowTorch();
         }
 
-        m_horizontalMovement = Input.GetAxis("Horizontal") * m_speed;
-        m_verticalMovement = Input.GetAxis("Vertical") * m_speed;
-    }
+        m_horizontalInput = Input.GetAxis("Horizontal");
+        m_verticalInput = Input.GetAxis("Vertical");
 
-    void FixedUpdate()
-    {
+        m_movementInput = new Vector3(m_horizontalInput, 0, m_verticalInput);
+
+        var forward = m_camera.transform.forward;
+        var right = m_camera.transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        var desiredMoveDirection = forward * m_verticalInput + right * m_horizontalInput;
+
+        m_horizontalMovement = desiredMoveDirection.x * m_speed;
+        m_verticalMovement = desiredMoveDirection.z * m_speed;
+
+        //transform.rotation = Quaternion.LookRotation(desiredMoveDirection);
+
         if (!m_hologramActive)
         {
             m_hologram.SetActive(m_hologramActive);
@@ -79,6 +101,12 @@ public class MovementLogic : MonoBehaviour
 
         m_animator.SetFloat("HeadTilt", blendTiltParam);
         m_ParentTransform.position = transform.position + new Vector3(0, m_headRadius, 0);
+
+    }
+
+    void FixedUpdate()
+    {
+        
 
     }
 
