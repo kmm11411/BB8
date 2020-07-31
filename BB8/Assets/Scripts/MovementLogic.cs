@@ -67,7 +67,7 @@ public class MovementLogic : MonoBehaviour
             m_rigidBody.velocity *= .8f;
         }
 
-        m_animator.SetFloat("HeadTilt", blendTiltParam);
+        //m_animator.SetFloat("HeadTilt", blendTiltParam);
         m_ParentTransform.position = transform.position + new Vector3(0, m_headRadius, 0);
 
     }
