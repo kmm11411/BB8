@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class MovementLogic : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class MovementLogic : MonoBehaviour
     private float m_horizontalMovement;
     private float m_verticalMovement;
     private bool m_hologramActive = false;
+    private bool m_blowTorchActive = false;
+    private bool m_electricArkActive = false;
     public GameObject m_hologram;
+    public VisualEffect m_blowTorchEffect;
+
     Rigidbody m_rigidBody;
     public float m_headRadius = .325f;
     public Transform m_ParentTransform;
@@ -21,16 +26,21 @@ public class MovementLogic : MonoBehaviour
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        m_blowTorchEffect.Stop();
     }
 
     void Update()
     {
         m_maxForce = new Vector3(m_speed, 0, m_speed);
         m_maxSpeed = m_maxForce.magnitude;
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             m_hologramActive = !m_hologramActive;
+        } else if (Input.GetKeyDown(KeyCode.V)) {
+            SwitchBlowTorch();
         }
+
         m_horizontalMovement = Input.GetAxis("Horizontal") * m_speed;
         m_verticalMovement = Input.GetAxis("Vertical") * m_speed;
     }
@@ -70,6 +80,16 @@ public class MovementLogic : MonoBehaviour
         m_animator.SetFloat("HeadTilt", blendTiltParam);
         m_ParentTransform.position = transform.position + new Vector3(0, m_headRadius, 0);
 
+    }
+
+    void SwitchBlowTorch() {
+        m_blowTorchActive = !m_blowTorchActive;
+
+        if(m_blowTorchActive) {
+            m_blowTorchEffect.Play();
+        } else {
+            m_blowTorchEffect.Stop();
+        }
     }
 
 }
