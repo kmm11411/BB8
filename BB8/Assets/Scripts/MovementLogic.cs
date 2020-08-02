@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
+public enum VFXtoPlay {
+    BlowTorch,
+    ElectricArk
+}
+
 public class MovementLogic : MonoBehaviour
 {
     public float m_speed = 5f;
@@ -33,6 +38,8 @@ public class MovementLogic : MonoBehaviour
 
     GameObject m_camera;
 
+    public VFXtoPlay m_vfx;
+
     void Start()
     {
         m_camera = Camera.main.gameObject;
@@ -50,9 +57,23 @@ public class MovementLogic : MonoBehaviour
         {
             m_hologramActive = !m_hologramActive;
         } else if (Input.GetKeyDown(KeyCode.V)) {
-            //SwitchBlowTorch();
-            m_armAnimator.SetTrigger("RaiseArm");
-            m_armActive = true;
+            if(!m_armActive) {
+                m_vfx = VFXtoPlay.BlowTorch;
+                m_blowTorchActive = true;
+                
+                TriggerArm();
+            } else if (m_armActive && m_vfx == VFXtoPlay.BlowTorch) {
+                TriggerArm();
+            }
+        } else if (Input.GetKeyDown(KeyCode.B)) {
+            if(!m_armActive) {
+                m_vfx = VFXtoPlay.ElectricArk;
+                m_electricArkActive = true;
+
+                TriggerArm();
+            } else if (m_armActive && m_vfx == VFXtoPlay.ElectricArk) {
+                TriggerArm();
+            }
         }
 
         m_horizontalInput = Input.GetAxis("Horizontal");
@@ -117,14 +138,28 @@ public class MovementLogic : MonoBehaviour
 
     }
 
-    void SwitchBlowTorch() {
-        m_blowTorchActive = !m_blowTorchActive;
-
-        if(m_blowTorchActive) {
-            m_blowTorchEffect.Play();
-        } else {
-            m_blowTorchEffect.Stop();
-        }
+    public void PlayBlowTorch() {
+        Debug.Log("Calling PlayBlowTorch");
+        m_blowTorchEffect.Play();
     }
 
+    public void PlayElectricArk() {
+        Debug.Log("Calling PlayElectricArk");
+        m_electricArkEffect.Play();
+    }
+
+    void TriggerArm () {
+        m_blowTorchEffect.Stop();
+        m_electricArkEffect.Stop();
+
+        if(m_armActive) {
+            m_armAnimator.SetBool("Active", false);
+            m_armActive = false;
+            m_electricArkActive = false;
+            m_blowTorchActive = false;
+        } else if (!m_armActive) {
+            m_armAnimator.SetBool("Active", true);
+            m_armActive = true;
+        }
+    }
 }
