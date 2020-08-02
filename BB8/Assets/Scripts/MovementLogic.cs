@@ -13,12 +13,16 @@ public class MovementLogic : MonoBehaviour
     private bool m_electricArkActive = false;
     public GameObject m_hologram;
     public VisualEffect m_blowTorchEffect;
+    public VisualEffect m_electricArkEffect;
 
     Rigidbody m_rigidBody;
     public float m_headRadius = .325f;
     public Transform m_ParentTransform;
 
-    public Animator m_animator;
+    public Animator m_armAnimator;
+    public bool m_armActive = false;
+
+    public Animator m_headAnimator;
     public float blendTiltParam = 0;
     private float m_maxSpeed = 0;
     private Vector3 m_maxForce;
@@ -34,6 +38,7 @@ public class MovementLogic : MonoBehaviour
         m_camera = Camera.main.gameObject;
         m_rigidBody = GetComponent<Rigidbody>();
         m_blowTorchEffect.Stop();
+        m_electricArkActive.Stop();
     }
 
     void Update()
@@ -45,7 +50,9 @@ public class MovementLogic : MonoBehaviour
         {
             m_hologramActive = !m_hologramActive;
         } else if (Input.GetKeyDown(KeyCode.V)) {
-            SwitchBlowTorch();
+            //SwitchBlowTorch();
+            m_armAnimator.SetTrigger("RaiseArm");
+            m_armActive = true;
         }
 
         m_horizontalInput = Input.GetAxis("Horizontal");
@@ -99,7 +106,7 @@ public class MovementLogic : MonoBehaviour
             m_rigidBody.velocity *= .8f;
         }
 
-        m_animator.SetFloat("HeadTilt", blendTiltParam);
+        m_headAnimator.SetFloat("HeadTilt", blendTiltParam);
         m_ParentTransform.position = transform.position + new Vector3(0, m_headRadius, 0);
 
     }
