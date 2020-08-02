@@ -38,7 +38,7 @@ public class MovementLogic : MonoBehaviour
         m_camera = Camera.main.gameObject;
         m_rigidBody = GetComponent<Rigidbody>();
         m_blowTorchEffect.Stop();
-        m_electricArkActive.Stop();
+        m_electricArkEffect.Stop();
     }
 
     void Update()

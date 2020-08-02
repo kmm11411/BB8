@@ -898,6 +898,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &1506415600976334325
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4976167706036371017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9debeb7392bda7541a694b8eb8804201, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5165599281013569458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,10 +1059,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 180
   m_hologram: {fileID: 1506415600391914740}
-  m_blowTorchEffect: {fileID: 0}
+  m_blowTorchEffect: {fileID: 5393012563526953555}
+  m_electricArkEffect: {fileID: 58643115}
   m_headRadius: 0.325
   m_ParentTransform: {fileID: 5080380492952394418}
-  m_armAnimator: {fileID: 0}
+  m_armAnimator: {fileID: 1506415600976334325}
   m_armActive: 0
   m_headAnimator: {fileID: 0}
   blendTiltParam: 0
@@ -1435,6 +1455,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfb46bdea1dba494fa8334e3e6d08417, type: 3}
+--- !u!1 &4976167706036371017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 26687361424901799, guid: bfb46bdea1dba494fa8334e3e6d08417,
+    type: 3}
+  m_PrefabInstance: {fileID: 4994551542459152622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8310759729232579674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3892669028336907444, guid: bfb46bdea1dba494fa8334e3e6d08417,

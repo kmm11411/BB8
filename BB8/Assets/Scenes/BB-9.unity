@@ -1605,7 +1605,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_blowTorchEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1506415600976334326}
+    - target: {fileID: 3183100775374650499, guid: f7f1f186cd49d8845951b1a4f15a3f87,
+        type: 3}
+      propertyPath: m_electricArkEffect
+      value: 
+      objectReference: {fileID: 1506415600976334327}
+    - target: {fileID: 3183100775374650499, guid: f7f1f186cd49d8845951b1a4f15a3f87,
+        type: 3}
+      propertyPath: m_armAnimator
+      value: 
+      objectReference: {fileID: 1506415600976334325}
     - target: {fileID: 4966657709080547865, guid: f7f1f186cd49d8845951b1a4f15a3f87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1689,7 +1699,7 @@ Animator:
   m_GameObject: {fileID: 1506415600976334324}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9debeb7392bda7541a694b8eb8804201, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1698,3 +1708,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!2083052967 &1506415600976334326 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5393012563526953555, guid: f7f1f186cd49d8845951b1a4f15a3f87,
+    type: 3}
+  m_PrefabInstance: {fileID: 1506415600976334323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &1506415600976334327 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 58643115, guid: f7f1f186cd49d8845951b1a4f15a3f87,
+    type: 3}
+  m_PrefabInstance: {fileID: 1506415600976334323}
+  m_PrefabAsset: {fileID: 0}
