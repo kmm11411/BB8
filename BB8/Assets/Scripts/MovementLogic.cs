@@ -53,10 +53,10 @@ public class MovementLogic : MonoBehaviour
         m_maxForce = new Vector3(m_speed, 0, m_speed);
         m_maxSpeed = m_maxForce.magnitude;
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !m_armActive)
         {
             m_hologramActive = !m_hologramActive;
-        } else if (Input.GetKeyDown(KeyCode.V)) {
+        } else if (Input.GetKeyDown(KeyCode.B) && !m_hologramActive) {
             if(!m_armActive) {
                 m_vfx = VFXtoPlay.BlowTorch;
                 m_blowTorchActive = true;
@@ -65,7 +65,7 @@ public class MovementLogic : MonoBehaviour
             } else if (m_armActive && m_vfx == VFXtoPlay.BlowTorch) {
                 TriggerArm();
             }
-        } else if (Input.GetKeyDown(KeyCode.B)) {
+        } else if (Input.GetKeyDown(KeyCode.V) && !m_hologramActive) {
             if(!m_armActive) {
                 m_vfx = VFXtoPlay.ElectricArk;
                 m_electricArkActive = true;
@@ -97,7 +97,7 @@ public class MovementLogic : MonoBehaviour
 
         //transform.rotation = Quaternion.LookRotation(desiredMoveDirection);
 
-        if (!m_hologramActive)
+        if (!m_hologramActive && !m_electricArkActive && !m_blowTorchActive)
         {
             m_hologram.SetActive(m_hologramActive);
 
