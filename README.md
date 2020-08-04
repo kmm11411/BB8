@@ -2,6 +2,8 @@
 
 This project was built is a demo test out building a character like BB8 using the Unity Engine.
 
+Published on Itch.io: https://safety-meeting-studios.itch.io/bb8-demo-controller
+
 Controls:
 [Up/Down/Left/Right] or [A/W/S/D] - Movement
 
